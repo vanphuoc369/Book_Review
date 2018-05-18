@@ -1,0 +1,31 @@
+<div id="sidebar" class="sidebar responsive ace-save-state">
+  <ul class="nav nav-list" id="ul_sidebar">
+    <li class="">
+      <%= link_to admin_root_path() do %>
+        <i class="menu-icon fa fa-table"></i>
+        <span class="menu-text"> Thống kê </span>
+      <% end %>
+    </li>
+    <li class="">
+      <%= link_to admin_users_path(), remote: true do %>
+        <i class="menu-icon fa fa-users"></i>
+        <span class="menu-text"> Quản lý người dùng </span>
+      <% end %>
+    </li>
+    <li class="">
+      <%= link_to admin_books_path do %>
+        <i class="menu-icon fa fa-book"></i>
+        <span class="menu-text"> Quản lý sách </span>
+      <% end %>
+    </li>
+    <li class="">
+      <%= link_to admin_reviews_path(), remote: true do %>
+        <i class="menu-icon fa fa-pencil"></i>
+        <span class="menu-text"> Quản lý đánh giá </span>
+      <% end %>
+    </li>
+  </ul>
+  <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+    <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+  </div>
+</div>
