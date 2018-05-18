@@ -1,0 +1,71 @@
+<header class="primary">
+  <div class="firstbar">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3 col-sm-12">
+          <div class="brand">
+            <%= link_to root_path do %>
+              <img src="/assets/logo.png" alt="Logo Website">
+            <% end %>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+          <%= form_tag books_path, class: "search",method: "get", autocomplete: "off" do %>
+            <div class="form-group">
+              <div class="input-group">
+                <%= text_field_tag :search, nil, placeholder: "Tìm kiếm sách theo tiêu đề hoặc tác giả", class: "form-control" %>
+                <div class="input-group-btn">
+                  <%= button_tag(type: "submit", class: "btn btn-primary") do %>
+                      <i class="fa fa-search"></i>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        <% if not logged_in? %>
+          <div class="col-md-3 col-sm-12 text-right">
+            <ul class="nav-icons">
+              <li>
+                <%= link_to signup_path do %>
+                  <i class="fa fa-user-plus"></i><div>Đăng ký</div>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to login_path do %>
+                  <i class="fa fa-user-secret"></i><div>Đăng nhập</div>
+                <% end %>
+              </li>
+            </ul>
+          </div>
+          <% elsif current_user.is_admin? %>
+            <div class="col-md-3 col-sm-12 text-right">
+              <ul class="nav-icons">
+                <li>
+                  <%= link_to admin_root_path do %>
+                    <i class="fa fa-sign-in"></i><div>Trang quản lý</div>
+                  <% end %>
+                </li>
+              </ul>
+            </div>
+          <% end %>
+      </div>
+    </div>
+  </div>
+  <!-- Start nav -->
+  <nav class="menu">
+    <div class="container">
+      <div id="menu-list">
+        <div class="row">
+          <div class="col-xs-12 col-md-6">
+            <%= render "layouts/left_header" %>
+          </div>
+          <div class="col-xs-12 col-md-6">
+          <%= render "layouts/right_header" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!-- End nav -->
+</header>
