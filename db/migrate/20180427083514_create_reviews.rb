@@ -5,6 +5,7 @@ class CreateReviews < ActiveRecord::Migration[5.1]
       t.references :book, foreign_key: true
       t.text :content
       t.float :rate, default: 0
+      t.boolean :is_check, default: false
 
       t.timestamps
     end

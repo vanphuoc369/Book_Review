@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(version: 20180506083004) do
     t.bigint "book_id"
     t.text "content"
     t.float "rate", limit: 24, default: 0.0
+    t.boolean "is_check", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["book_id"], name: "index_reviews_on_book_id"
