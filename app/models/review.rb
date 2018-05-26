@@ -6,7 +6,13 @@ class Review < ApplicationRecord
 
   validates :content, presence: {accept: true, message: "không được để trống"}
 
-  scope :newest, ->{order created_at: :desc}
+  scope :newest, -> do
+     where("is_check= true").order(created_at: :desc)
+  end
+
+  scope :reviews_checked, -> (book_id) do
+     where("is_check = ? AND book_id = ?", true, book_id).order(created_at: :desc) if book_id.present?
+  end
 
   scope :find_reviews_to_report, ->(book_id, user_id) do
     where("book_id = ? AND user_id != ?", book_id, user_id) if (book_id.present? && user_id.present?)

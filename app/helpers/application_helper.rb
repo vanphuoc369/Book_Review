@@ -4,12 +4,13 @@ module ApplicationHelper
   end
 
   def book_star book
-    if book.reviews.blank?
+    @reviews = Review.reviews_checked(book.id)
+    if @reviews.empty?
       @average = 0
       @count_rate = 0
     else
-      @average = book.reviews.average(:rate).round 2
-      @count_rate = book.reviews.count
+      @average = (@reviews.average(:rate)).round(2)
+      @count_rate = @reviews.count
     end
   end
 

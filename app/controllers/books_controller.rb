@@ -19,8 +19,8 @@ class BooksController < ApplicationController
 
   def show
     find_book_mark(params[:id], current_user.id) if logged_in?
-    @reviews = @book.reviews.newest
-    @reviews = collection_paginate @reviews, params[:page], 5
+    @reviews = Review.reviews_checked @book.id
+    @reviews = collection_paginate @reviews, params[:page], 1
   end
 
   private

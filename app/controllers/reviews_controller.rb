@@ -30,7 +30,7 @@ class ReviewsController < ApplicationController
           end
         end
       end
-      flash[:success] = "Đăng bài thành công"
+      flash[:success] = "Gửi bài đánh giá thành công. Vui lòng chờ đợi quá trình kiểm tra hoàn tất để hiển thị bài đánh giá."
       redirect_to @book
     else
       render :new
