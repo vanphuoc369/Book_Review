@@ -2,7 +2,7 @@ module Admin
   class ReviewsController < AdminController
     before_action :find_review, only: [:show, :update, :destroy]
     def index
-      @reviews = Review.all.paginate page: params[:page], per_page: 10
+      @reviews = Review.all.order('created_at DESC').paginate page: params[:page], per_page: 10
     end
 
     def show
@@ -12,13 +12,15 @@ module Admin
     def update
       if @review.update_attributes is_check: true
         @activity = Activity.find_by(user_id: @review.user_id, object_id: @review.id)
-        @reviews = Review.find_reviews_to_report(@review.book_id, current_user.id)
+        Notification.create(user_id: @review.user_id, activity_id: @activity.id,
+          content: "Bài đánh giá sách của bạn đã được duyệt và đăng tải thành công.")
+        @reviews = Review.find_reviews_to_report(@review.book_id, @review.user_id)
         if @reviews
           @reviews.each do |review|
             user = User.find_by id: review.user_id
             if user
               Notification.create(user_id: user.id, activity_id: @activity.id,
-                content: current_user.full_name + " đã thêm đánh giá cho sách mà bạn đã tham gia đánh giá.")
+                content: (User.find_by(id: @review.user_id)).full_name + " đã thêm đánh giá cho sách mà bạn đã tham gia đánh giá.")
             end
           end
         end

@@ -26,7 +26,7 @@ class NotificationsController < ApplicationController
         @book = Book.find_by id: @activity.object_id
         if @book
           @user_book = UserBook.find_by(user_id: current_user.id, book_id: @book.id)
-          @review = Review.find_by book_id: @book.id
+          @review = Review.find_by(book_id: @book.id, is_check: true)
         end
       elsif @activity.type_activity == "review"
         find_review_and_book @activity.object_id

@@ -3,7 +3,7 @@ module Admin
     before_action :find_user, only: %i(edit update destroy)
 
     def index
-      @users = User.all_users.paginate page: params[:page], per_page: 10
+      @users = User.all_users.order('created_at DESC').paginate page: params[:page], per_page: 10
     end
 
     def new
