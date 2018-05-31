@@ -1,7 +1,9 @@
-<div class="col-md-6">
+<div class="col-md-6" id="chart_colunm">
   <div id="chartContainer" style="height: 520px; width: 100%;"></div>
   <script type="text/javascript">
-    window.onload = function () {
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(colunmChart);
+    function colunmChart() {
       var chart = new CanvasJS.Chart("chartContainer",
         {
           title:{
