@@ -1,0 +1,51 @@
+<div class="main-content-inner">
+  <div class="page-content">
+    <div class="page-header" style="margin-top: 0px;">
+      <h4>
+        Duyệt các bài đánh giá
+      </h4>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <%= render "admin/shared/flash_message" %>
+        <div class="row content">
+          <% if @reviews_dont_checked.any? %>
+            <table id="table_books" class="table table-striped" style="width:100%">
+              <thead>
+                  <tr>
+                      <th>Người đánh giá</th>
+                      <th>Sách được đánh giá</th>
+                      <th>Ngày tạo</th>
+                      <th style="text-align: center;">Duyệt đánh giá</th>
+                  </tr>
+              </thead>
+              <tbody>
+                <% @reviews_dont_checked.each do |review| %>
+                  <tr>
+                    <% find_user_reviewed(review.id) %>
+                    <td><%= @user.full_name %></td>
+                    <td>
+                      <% book = find_book_for_review(review.id) %>
+                      <%= link_to book_path(book.id) do %>
+                        <%= book.title %>
+                      <% end %>
+                    </td>
+                    <td><%= book.created_at.strftime("%d/%m/%Y") %></td>
+                    <td class="center">
+                      <%= link_to admin_check_review_path(review.id), class: "action_manage edit", title: "Kiểm duyệt" do %>
+                        <i class="fa fa-eye" aria-hidden="true" style="color: green;"></i>
+                      <% end %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+            <%= will_paginate @reviews_dont_checked, id: "paginate" %>
+          <% else %>
+            <p class="notify">Không có dữ liệu</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -26,6 +26,7 @@ Rails.application.routes.draw do
     resources :books, except: :show
     resources :comments, only: [:show, :destroy]
     resources :users, except: :show
-    resources :reviews, only: [:show, :index, :destroy]
+    resources :reviews, only: [:show, :index, :destroy, :update]
+    resources :check_reviews, only: [:show, :index, :destroy]
   end
 end

@@ -10,4 +10,9 @@ module Admin::ReviewsHelper
     @book = Book.find_by id: @review.book_id
     return @book if @book
   end
+
+  def find_user user_id
+    @user = User.find_by id: user_id
+    return @user if @user
+  end
 end

@@ -7,19 +7,25 @@
       <% end %>
     </li>
     <li class="">
-      <%= link_to admin_users_path(), remote: true do %>
-        <i class="menu-icon fa fa-users"></i>
-        <span class="menu-text"> Quản lý người dùng </span>
-      <% end %>
-    </li>
-    <li class="">
       <%= link_to admin_books_path do %>
         <i class="menu-icon fa fa-book"></i>
         <span class="menu-text"> Quản lý sách </span>
       <% end %>
     </li>
     <li class="">
-      <%= link_to admin_reviews_path(), remote: true do %>
+      <%= link_to admin_check_reviews_path do %>
+        <i class="menu-icon fa fa-check-circle"></i>
+        <span class="menu-text"> Duyệt đánh giá </span>
+      <% end %>
+    </li>
+    <li class="">
+      <%= link_to admin_users_path() do %>
+        <i class="menu-icon fa fa-users"></i>
+        <span class="menu-text"> Quản lý người dùng </span>
+      <% end %>
+    </li>
+    <li class="">
+      <%= link_to admin_reviews_path() do %>
         <i class="menu-icon fa fa-pencil"></i>
         <span class="menu-text"> Quản lý đánh giá </span>
       <% end %>

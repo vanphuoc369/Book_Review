@@ -20,17 +20,7 @@ class ReviewsController < ApplicationController
     @review = current_user.reviews.build review_params
     if @book.reviews << @review
       @activity = Activity.create(user_id: current_user.id, type_activity: "review", content: "Bạn đã đánh giá sách", object_id: @review.id)
-      @reviews = Review.find_reviews_to_report(@review.book_id, current_user.id)
-      if @reviews
-        @reviews.each do |review|
-          user = User.find_by id: review.user_id
-          if user
-            Notification.create(user_id: user.id, activity_id: @activity.id,
-              content: current_user.full_name + " đã thêm đánh giá cho sách mà bạn đã tham gia đánh giá.")
-          end
-        end
-      end
-      flash[:success] = "Đăng bài thành công"
+      flash[:success] = "Viết bài đánh giá thành công. Bài đánh giá của bạn sẽ được đăng khi hoàn thành quá trình kiểm tra."
       redirect_to @book
     else
       render :new

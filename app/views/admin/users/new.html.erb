@@ -3,7 +3,7 @@
     <div class="box box-border">
       <div class="box-body">
         <h4>Thêm tài khoản</h4>
-        <%= form_for @user, remote: true, url: admin_users_path do |f| %>
+        <%= form_for @user, url: admin_users_path do |f| %>
           <hr>
           <%= render "shared/error_messages", object: f.object %>
 
